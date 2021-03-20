@@ -55,7 +55,7 @@ class Routeur
     }
     private function gererErreur(Exception $e)
     {
-            $vue = new Vue("Erreur","Erreur");
+            $vue = new Vue("Erreur");
             $vue->generer(array('msgErreur'=>$e->getMessage()));
 
     }
