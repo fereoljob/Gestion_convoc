@@ -22,6 +22,10 @@ class Vue{
         $vue = $this->genererFichier('Vue/gabarit.php',array('titre'=>$this->fichier,'contenu'=>$contenu,'racineWeb'=>$racineWeb));
         echo $vue;
     }
+    private function nettoyer($valeur)
+    {
+        return htmlspecialchars($valeur, ENT_QUOTES, 'UTF-8', false);
+    }
     public function genererFichier($fichier,$donnees)
     {
         if(file_exists($fichier))
