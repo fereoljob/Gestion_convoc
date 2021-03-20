@@ -7,28 +7,28 @@ class ControleurConnexion extends Controleur
 {
 
     private $utilisateur;
-    public function index()
-    {
-        $this->genererVue(array());
-    }
     public function __construct()
     {
         $this->utilisateur=new Utilisateur();
     }
+    public function index()
+    {
+        $this->genererVue(array());
+    }
     public function connecter()
     {
-        if($this->requete->existeParametre("login") &&
-        $this->requete->existeParametre("mdp"))
+        if($this->requete->existeParametre("_login") &&
+        $this->requete->existeParametre("mot_de_passe"))
         {
-            $login = $this->requete->getParametre("login");
-            $mdp = $this->requete->getParametre("mdp");
+            $login = $this->requete->getParametre("_login");
+            $mdp = $this->requete->getParametre("mot_de_passe");
             if($this->utilisateur->connecter($login,$mdp))
             {
 
                 $utilisateur =$this->utilisateur->getUtilisateur($login,$mdp);
-                $this->requete->getSession()->setAttribut("login",$utilisateur["login"]);
-                $this->requete->getSession()->setAttribut("idUtilisateur",$utilisateur["id_admin"]);
-                $this->rediriger("admin");
+                $this->requete->getSession()->setAttribut("_login",$utilisateur["_login"]);
+                $this->requete->getSession()->setAttribut("id_admin",$utilisateur["id_admin"]);
+                $this->rediriger("Admin");
             }
             else
             {
@@ -42,6 +42,6 @@ class ControleurConnexion extends Controleur
     public function deconnecter()
     {
         $this->requete->getSession()->detruire();
-        $this->rediriger("acceuil");
+        $this->rediriger("Acceuil");
     }
 }
