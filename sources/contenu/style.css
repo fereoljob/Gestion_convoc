@@ -62,3 +62,66 @@ footer{
     text-align: justify;
     margin-left: 100px;
 }
+
+
+
+html{
+    width:100%;
+    height:100%;
+    font-size:100%;
+  }
+  body {
+  background: #E8CBC0;
+  background: -webkit-linear-gradient(to right, #636FA4, #E8CBC0);
+  background: linear-gradient(to right, #636FA4, #E8CBC0);
+    font-size:1em
+  }
+  *{
+    box-sizing:border-box
+  }
+  #menu-lat ul {
+      width:200px;
+      list-style:none;
+      padding:0px;
+  }
+  
+  #menu-lat ul li {
+      text-align:center;
+      border: 1px solid #fff ;
+      padding:15px 15px;
+      max-height: 55px;
+  }
+  
+  #menu-lat ul li a{
+    text-decoration:none;
+    color:#f7f7f7;
+    text-transform:uppercase;
+    
+  }
+  
+  #menu-lat ul li:hover {
+      background: #54B6A8;
+      -moz-transition: all .8s; 
+      -webkit-transition: all .8s; 
+      -o-transition: all .8s; 
+      transition: all .8s;
+  }
+  
+  
+  #menu-lat ul > li > ul{
+    opacity:0;   
+    display:none;
+    z-index:999;
+    border: 1px solid #000;
+    margin-top:-35px;
+    background-color:#54B6A8;
+  }
+  
+  #menu-lat ul li:hover > ul {
+    display: block; 
+    position:relative;
+    opacity:1;
+    margin-left:185px
+  }
+  
+  

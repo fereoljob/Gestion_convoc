@@ -12,13 +12,13 @@ require_once 'Framework/Controleur.php';
  {
      public function executerAction($action)
      {
-         if($this->requete->getSession()->existeAttribut("idUtilisateur"))
+         if($this->requete->getSession()->existeAttribut("id_admin"))
          {
              parent::executerAction($action);
          }
          else
          {
-             $this->rediriger("connexion");
+             $this->rediriger("Connexion");
          }
      }
  }

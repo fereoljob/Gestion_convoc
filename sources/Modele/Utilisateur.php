@@ -35,7 +35,7 @@ require_once 'Framework/Modele.php';
         _login = ? and mot_de_passe=?";
         $utilisateur = $this->executerRequete($sql,array($login,$mdp));
         if($utilisateur->rowCount()==1)
-            return $utilisateur->fetch();
+            return $utilisateur->fetch(PDO::FETCH_ASSOC);
         else
             throw new Exception("Aucun utilisateur ne correspond aux identifiants fournis");
       }
