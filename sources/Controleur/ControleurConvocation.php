@@ -16,7 +16,7 @@ class ControleurConvocation extends Controleur{
         $this->joueur=new effectif();
         $this->compe= new competition();
     }
-    public function Convocation($date=null,$equipe=null)
+    public function index($date=null,$equipe=null)
     {
         if(isset($date) && isset($equipe))
         {
@@ -38,9 +38,5 @@ class ControleurConvocation extends Controleur{
             $this->genererVue(array());
         }
             
-    }
-    public function index()
-    {
-        $this->genererVue(array());
     }
 }

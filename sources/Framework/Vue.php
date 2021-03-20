@@ -1,7 +1,7 @@
 <?php
 require_once 'Configuration.php';
 class Vue{
-    private $ficher;
+    private $fichier;
     private $titre;
 
     public function __construct($action,$controleur="")
@@ -17,9 +17,9 @@ class Vue{
     {
         //Genereation de la partie specifique de la vue
         $contenu = $this->genererFichier($this->fichier,$donnes);
-        //$racineWeb="";
+        $racineWeb=Configuration::get("racineWeb","/");
         //generation du gabarit commun
-        $vue = $this->genererFichier('Vue/gabarit.php',array('titre'=>$this->titre,'contenu'=>$contenu));
+        $vue = $this->genererFichier('Vue/gabarit.php',array('titre'=>$this->fichier,'contenu'=>$contenu,'racineWeb'=>$racineWeb));
         echo $vue;
     }
     public function genererFichier($fichier,$donnees)

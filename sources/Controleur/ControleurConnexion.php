@@ -7,10 +7,6 @@ class ControleurConnexion extends Controleur
 {
 
     private $utilisateur;
-    public function Connexion()
-    {
-        $this->genererVue(array());
-    }
     public function index()
     {
         $this->genererVue(array());

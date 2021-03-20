@@ -34,7 +34,7 @@ class Configuration{
             {
                 self::$parametres = parse_ini_file($cheminFichier);
             }
-            return self::$parametres;
         }
+        return self::$parametres;
     }
 }
