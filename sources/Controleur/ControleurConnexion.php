@@ -3,8 +3,7 @@ require_once 'Framework/Vue.php';
 require_once 'Framework/Controleur.php';
 require_once 'Modele/Utilisateur.php';
 
-class ControleurConnexion extends Controleur
-{
+class ControleurConnexion extends Controleur{
 
     private $utilisateur;
     public function __construct()
@@ -17,6 +16,7 @@ class ControleurConnexion extends Controleur
     }
     public function connecter()
     {
+        $this->utilisateur=new Utilisateur();
         if($this->requete->existeParametre("_login") &&
         $this->requete->existeParametre("mot_de_passe"))
         {

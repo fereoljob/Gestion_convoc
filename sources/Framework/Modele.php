@@ -16,11 +16,11 @@ abstract class Modele
     {
         if($param==null)
         {
-            $resultat = $this->getBdd()->query($sql);
+            $resultat = self::getBdd()->query($sql);
         }
         else
         {
-            $resultat = $this->getBdd()->prepare($sql);
+            $resultat = self::getBdd()->prepare($sql);
             $resultat->execute($param);
         }
         return $resultat;

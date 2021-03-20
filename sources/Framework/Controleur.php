@@ -9,7 +9,7 @@ abstract class Controleur
     private $action;
 
     //requete entrante
-    private $requete;
+    public $requete;
 
     //definit la requete entrante
     public function setRequete(Requete $requete)

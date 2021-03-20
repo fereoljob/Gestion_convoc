@@ -16,7 +16,7 @@
                 <ul>
                     <li><a href="" >Accueil</a></li>
                     <li><a href="Convocation/index" >Convocations</a></li>
-                    <li><a href=#>Calendriers</a></li>
+                    <li><a href=#>Calendrier</a></li>
                     <li><a href=#>Effectifs</a></li>
                 </ul>
             </nav>

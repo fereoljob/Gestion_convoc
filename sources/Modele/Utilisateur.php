@@ -8,8 +8,7 @@ require_once 'Framework/Modele.php';
  * @author JOB fereol 
  */
 
- class utilisateur extends Modele
- {
+ class Utilisateur extends Modele{
      /** 
       * Verifie qu'un utilsateur existe dans la BD
       *@param string $login le login
