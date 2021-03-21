@@ -4,10 +4,10 @@ require_once 'Framework/Modele.php';
 class competition extends Modele
 {
     
-    public function getCompet($date,$nomEquipe)
+    public function getCompet($id_compet)
     {
-        $sql = 'select * from competition where datecompet=? and nom_equipe = ?';
-        $reponses = $this->executerRequete($sql,array($date,$nomEquipe));
+        $sql = 'select * from competition where id_compet = ?';
+        $reponses = $this->executerRequete($sql,array($id_compet));
         return $reponses;
     }
     public function getCompetitions()

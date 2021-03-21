@@ -1,15 +1,18 @@
 drop table if exists effectif;
 drop table if exists competition;
 drop table if exists etat;
--------creation
+drop table if exists convocation;
+drop table if exists administrateur;
+
+
 create table effectif
 (id_joueur int not null AUTO_INCREMENT primary key,
 nom varchar(10),
 prenom  varchar(15),
 licence  varchar(5) check (licence = "Libre"),
 selectionnee varchar(4) check (selectionnee in ('oui','non')),
+id_convocation varchar(30) references convocation(id_convocation),
 Unique(nom,prenom)
-id_convocation varchar(30) references convocation(id_convocation)
 );
 create table competition
 (id_compet int NOT NULL AUTO_INCREMENT primary key,
@@ -19,7 +22,7 @@ equipe_adv varchar(30),
 datecompet date,
 heure time,
 terrain varchar(50),
-sites varchar(30),
+site varchar(30),
 unique(nom_compet,nom_equipe,equipe_adv,datecompet,heure)
 );
 create table etat
@@ -30,20 +33,21 @@ id_joueur int references effectif(id_joueur),
 unique(id_joueur,dateAb)
 );
 create table convocation
-(id_convocation varchar(30) AUTO_INCREMENT primary key,
+(id_convocation int AUTO_INCREMENT primary key,
 DateConvoc date,
 nomEquipe varchar(15),
 publie varchar(5) check (publie in ('oui','non')),
 equipe_adv varchar(20),
+id_compet int references competition(id_compet),
 unique(DateConvoc,nomEquipe));
 create table administrateur
 (
-    id_admin int not primary key AUTO_INCREMENT,
+    id_admin primary key AUTO_INCREMENT,
     nom_admin varchar(30),
     prenom_admin varchar(30),
     _login varchar(30),
     mot_de_passe varchar(30),
-    typAdmin varchar check(typAdmin in('Secretaire','Entraineur'))
+    typAdmin varchar(30) check(typAdmin in('Secretaire','Entraineur'))
 );
 alter table competition AUTO_INCREMENT=101;
 alter table etat AUTO_INCREMENT = 1001;

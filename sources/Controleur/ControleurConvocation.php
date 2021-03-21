@@ -16,21 +16,30 @@ class ControleurConvocation extends Controleur{
         $this->joueur=new effectif();
         $this->compe= new competition();
     }
-    public function index($date=null,$equipe=null)
+    public function index()
     {
-        if(isset($date) && isset($equipe))
+        if($this->requete->existeParametre("ladate") && $this->requete->existeParametre("Equipe"))
         {
-            $convocation = $this->convocation->getConvo($date,$equipe);
-            $tab = $convocation->fetch(PDO::FETCH_BOTH);
-            if(isset($tab[0]))
+            $date=$this->requete->getParametre("ladate");
+            $equipe =$this->requete->getParametre("Equipe");
+            $convocations = $this->convocation->getConvo($date,$equipe);
+            if($convocations->rowCount()==1)
             {
-                $joueur = $this->joueur->getJoueur_convo($tab[0]);
-                $compe = $this->compet->getCompet($tab[1],$tab[2]);
-                $this->genererVue(array('convocation'=>$convocation,'joueur'=>$joueur,'compe'=>$compe));
+                $tab = $convocations->fetch(PDO::FETCH_ASSOC);
+                if($tab["publie "]=="oui"){
+                    $joueurs = $this->joueur->getJoueur_convo($tab["id_convocation"]);
+                    $compes = $this->compet->getCompet($tab["id_compet"]);
+                    $competition = $compes->fetch(PDO::FETCH_ASSOC);
+                    $this->genererVue(array('convocation'=>$tab,'joueur'=>$joueurs,'compe'=>$competition,'trouve'=>"oui"));
+                }
+                else
+                {
+                    $this->genererVue(array("trouve"=>"non"));
+                }
             }
             else
             {
-                $this->genererVue(array("trouve"=>"Aucune convocation n'a été publié pour les informations entrées"));
+                $this->genererVue(array("trouve"=>"non"));
             }
         }
         else

@@ -11,7 +11,7 @@ class convocation extends Modele
     public function getConvo($date,$equipe)
     {
         $sql = 'select * from convocation where DateConvoc=? and nomEquipe=?';
-        $reponses = $this->executerRequete($ql,array($date,$equipe));
+        $reponses = $this->executerRequete($sql,array($date,$equipe));
         return $reponses;
     }
     //modification champs publiable
