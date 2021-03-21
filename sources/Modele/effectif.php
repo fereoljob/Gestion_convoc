@@ -23,7 +23,7 @@ class effectif extends Modele
             $sql = 'select * from effectif where id_joueur=?';
             $reponses = $this->executerRequete($sql,array($id_joueur));
         }
-        $reponses = $this->executerRequete($ql);
+        $reponses = $this->executerRequete($sql);
         return $reponses;
     }
     //insertion joueur

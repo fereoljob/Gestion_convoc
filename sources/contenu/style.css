@@ -21,7 +21,7 @@ nav ul{
 }
 nav li{
     float:left;
-    width: 25%;
+    width: 18%;
     text-align: center;
     font-size: 2em;
 }
@@ -64,42 +64,41 @@ footer{
 }
 
 
-
 html{
     width:100%;
     height:100%;
     font-size:100%;
   }
-  body {
-  background: #E8CBC0;
-  background: -webkit-linear-gradient(to right, #636FA4, #E8CBC0);
-  background: linear-gradient(to right, #636FA4, #E8CBC0);
-    font-size:1em
-  }
-  *{
+body {
+    background: #E8CBC0;
+    background: -webkit-linear-gradient(to right, #636FA4, #E8CBC0);
+    background: linear-gradient(to right, #636FA4, #E8CBC0);
+      font-size:1em;
+    }
+*{
     box-sizing:border-box
   }
-  #menu-lat ul {
+#menu-lat ul {
     width:300px;
     list-style:none;
     padding:0px;
   }
   
-  #menu-lat ul li {
+#menu-lat ul li {
       text-align:center;
       border: 1px solid #fff ;
       padding:15px 15px;
       max-height: 55px;
   }
   
-  #menu-lat ul li a{
+#menu-lat ul li a{
     text-decoration:none;
     color:#f7f7f7;
     text-transform:uppercase;
     
   }
   
-  #menu-lat ul li:hover {
+#menu-lat ul li:hover {
       background: #54B6A8;
       -moz-transition: all .8s; 
       -webkit-transition: all .8s; 
@@ -108,7 +107,7 @@ html{
   }
   
   
-  #menu-lat ul > li > ul{
+#menu-lat ul > li > ul{
     opacity:0;   
     display:none;
     z-index:999;
@@ -117,11 +116,85 @@ html{
     background-color:#54B6A8;
   }
   
-  #menu-lat ul li:hover > ul {
+#menu-lat ul li:hover > ul {
     display: block; 
     position:relative;
     opacity:1;
     margin-left:185px
   }
-  
-  
+
+#effectif table{
+    border:2px solid white;
+    border-collapse: collapse;
+    width: 50%;
+}
+#effectif td{
+    border:2px solid white;
+    border-collapse: collapse;
+    width: 50%;
+}
+#effectif th{
+    border:2px solid white;
+    border-collapse: collapse;
+    width: 50%;
+}
+#effectif th
+{
+    text-align: left;
+    padding : 16px;
+    font-size:20px;
+}
+#effectif td
+{
+    text-align: left;
+    padding : 16px;
+    font-size:20px;
+}
+
+#effectif table
+{
+    margin-left:auto;
+    margin-right: auto;
+}
+#effectif h1
+{
+    text-align:center;
+}
+#competition table{
+    border:2px solid white;
+    border-collapse: collapse;
+    width: 50%;
+}
+#competition td{
+    border:2px solid white;
+    border-collapse: collapse;
+    width: 50%;
+}
+#competition th{
+    border:2px solid white;
+    border-collapse: collapse;
+    width: 50%;
+}
+#competition th
+{
+    text-align: left;
+    padding : 16px;
+    font-size:20px;
+}
+#competition td
+{
+    text-align: left;
+    padding : 16px;
+    font-size:20px;
+}
+
+#competition table
+{
+    margin-right:auto;
+    margin-left:auto;
+}
+#competition h1
+{
+    text-align:center;
+}
+

@@ -16,7 +16,6 @@ class ControleurConnexion extends Controleur{
     }
     public function connecter()
     {
-        $this->utilisateur=new Utilisateur();
         if($this->requete->existeParametre("_login") &&
         $this->requete->existeParametre("mot_de_passe"))
         {

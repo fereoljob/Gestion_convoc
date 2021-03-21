@@ -11,6 +11,12 @@ class etat extends Modele
         $reponses = $this->executerRequete($sql,array($date));
         return $reponses;
     }
+    public function getAllEtat()
+    {
+        $sql = 'select * from etat';
+        $reponses = $this->executerRequete($sql);
+        return $reponses;
+    }
     //inserer absence
     public function InsererAb($type,$date,$id_joueur)
     {

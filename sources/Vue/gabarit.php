@@ -16,8 +16,9 @@
                 <ul>
                     <li><a href="" >Accueil</a></li>
                     <li><a href="Convocation/index" >Convocations</a></li>
-                    <li><a href=#>Calendrier</a></li>
-                    <li><a href=#>Effectifs</a></li>
+                    <li><a href="Competition/index">Calendrier</a></li>
+                    <li><a href="Effectif/index">Effectifs</a></li>
+                    <li><a href=#>Absences</a></li>
                 </ul>
             </nav>
             <div id='contenu'>
