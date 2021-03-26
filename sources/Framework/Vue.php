@@ -3,10 +3,12 @@ require_once 'Configuration.php';
 class Vue{
     private $fichier;
     private $titre;
+    private $control;
 
     public function __construct($action,$controleur="")
     {
         $fichier = "Vue/";
+        $this->control = $controleur;
         if($controleur !="")
         {
             $fichier = $fichier.$controleur."/";
@@ -15,11 +17,20 @@ class Vue{
     }
     public function generer($donnes)
     {
-        //Genereation de la partie specifique de la vue
-        $contenu = $this->genererFichier($this->fichier,$donnes);
+        $tab = ["Effectif","Competition","Etat","Convoc"];
+        //Generation de la partie specifique de la vue
+        if (in_array($this->control,$tab))
+        { 
+            $contenu_prim = $this->genererFichier($this->fichier,$donnes);
+            $contenu = $this->genererFichier('Vue/gabAdmin.php',array('contenu_prim'=>$contenu_prim));
+        }
+        else
+        {
+            $contenu = $this->genererFichier($this->fichier,$donnes);
+        }
         $racineWeb=Configuration::get("racineWeb","/");
         //generation du gabarit commun
-        $vue = $this->genererFichier('Vue/gabarit.php',array('titre'=>$this->fichier,'contenu'=>$contenu,'racineWeb'=>$racineWeb));
+        $vue = $this->genererFichier('Vue/gabarit.php',array('titre'=>$this->titre,'contenu'=>$contenu,'racineWeb'=>$racineWeb));
         echo $vue;
     }
     private function nettoyer($valeur)

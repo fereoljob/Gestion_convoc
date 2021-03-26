@@ -14,11 +14,11 @@
             </header>
             <nav>
                 <ul>
-                    <li><a href="" >Accueil</a></li>
-                    <li><a href="Convocation/index" >Convocations</a></li>
-                    <li><a href="Competition/index">Calendrier</a></li>
-                    <li><a href="Effectif/index">Effectifs</a></li>
-                    <li><a href=#>Absences</a></li>
+                    <li><a href="" ><strong>Accueil</strong></a></li>
+                    <li><a href="Convocation/index" ><strong>Convocations</strong></a></li>
+                    <li><a href="Competition/index"><strong>Calendrier</strong></a></li>
+                    <li><a href="Effectif/index"><strong>Effectifs</strong></a></li>
+                    <li><a href=#><strong>Absences</strong></a></li>
                 </ul>
             </nav>
             <div id='contenu'>

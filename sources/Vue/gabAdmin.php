@@ -10,7 +10,7 @@
         <li><a href=#><strong>Effectifs</strong></a>
             <ul>
                 <li><a href="Effectif/index">Consulter</a></li>
-                <li><a href="Effectif/modifer">Ajout/Suppression</a></li>
+                <li><a href="Effectif/modifier">Ajout/Suppression</a></li>
                 <li><a href=#>Mettre à Jour</a></li>
             </ul>
         </li>
@@ -31,3 +31,8 @@
     </ul>
     <button><a href=Connexion/deconnecter>Se déconnecter</a></button>
 </div>
+<?php
+    echo "<div id=contenus>";
+    echo $contenu_prim;
+    echo "</div>";
+?>

@@ -12,7 +12,15 @@ class ControleurConnexion extends Controleur{
     }
     public function index()
     {
-        $this->genererVue(array());
+        if($this->requete->getSession()->existeAttribut("id_admin"))
+         {
+            $this->rediriger("Admin");
+         }
+         else
+         {
+            $this->genererVue();   
+         }
+
     }
     public function connecter()
     {
@@ -31,7 +39,8 @@ class ControleurConnexion extends Controleur{
             }
             else
             {
-                $this->genererVue(array("msgErreur"=>"Login ou mot de passe incorrects"),"index");
+                $this->setAction("index");
+                $this->genererVue(array("msgErreur"=>"Login ou mot de passe incorrects! Réessayez!"));
             }
 
         }else{
@@ -41,6 +50,6 @@ class ControleurConnexion extends Controleur{
     public function deconnecter()
     {
         $this->requete->getSession()->detruire();
-        $this->rediriger("Acceuil");
+        $this->rediriger("Accueil");
     }
 }

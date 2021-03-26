@@ -13,3 +13,7 @@
         <br/><br/>
     </fieldset>
 </form>
+<?php
+if(isset($donnees["msgErreur"]))
+    echo "<h3><strong>$donnees[msgErreur]</strong></h3>";
+?>

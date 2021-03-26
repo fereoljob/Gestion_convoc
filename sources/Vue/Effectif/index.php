@@ -1,5 +1,5 @@
-<div id="effectif" >
-    <h1>Liste des joueurs du club</h1>
+<div class="princip">
+        <h1>Liste des joueurs du club</h1>
     <table>
         <thead>
             <th>Nom</th>

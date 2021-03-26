@@ -3,7 +3,7 @@
     <fieldset>
         <legend><h1>Consultation convocation</h1></legend>
                 <label for="ladate">Date:</label>&nbsp&nbsp&nbsp&nbsp&nbsp
-                <input type="date" name="ladate" />
+                <input type="date" name="ladate" required/>
                 <br/><br/>
                 <label for="lequipe">Equipe:</label>
                 <select name="Equipe">

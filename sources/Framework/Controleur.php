@@ -16,6 +16,10 @@ abstract class Controleur
     {
         $this->requete=$requete;
     }
+    public function setAction($act)
+    {
+        $this->action = $act;
+    }
 
     //Execute l'action a realiser
     public function executerAction($action)

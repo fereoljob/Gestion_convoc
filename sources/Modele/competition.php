@@ -16,4 +16,10 @@ class competition extends Modele
         $reponses = $this->executerRequete($sql);
         return $reponses;
     }
+    public function ajouterCompe($param)
+    {
+        $sql="insert into competition values (null,?,?,?,?,?,?,?)";
+        $reponses = $this->executerRequete($sql,$param);
+        return $reponses;
+    }
 }

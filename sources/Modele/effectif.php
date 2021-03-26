@@ -30,13 +30,20 @@ class effectif extends Modele
     public function ajouterJoueur($param)
     {
         $sql = 'insert into effectif values(null,?,?,?,null,null)';
-        $this->executerRequete($sql,$param);
+        $reponses = $this->executerRequete($sql,$param);
+        return $reponses;
     }
     //Modification table effectif(convo ou licence) 
     public function modifier($param)
     {
         $sql = 'update effectif set ?=? where nom=? and prenom=?';
         $this->executerRequete($sql,$param);
+    }
+    public function retirerJoueur($param)
+    {
+        $sql = 'delete from effectif where nom=? and prenom=?';
+        $reponses = $this->executerRequete($sql,$param);
+        return $reponses;
     }
     
 }

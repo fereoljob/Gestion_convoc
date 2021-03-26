@@ -1,4 +1,4 @@
-<div id="competition" >
+    <div class="princip">
     <h1>Calendrier des rencontres </h1>
     <table>
         <thead>

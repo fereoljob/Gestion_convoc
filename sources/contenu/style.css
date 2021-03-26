@@ -18,10 +18,11 @@ header h1{
 }
 nav ul{
     list-style-type:none;
+    margin-left: 200px;
 }
 nav li{
     float:left;
-    width: 18%;
+    width: 16%;
     text-align: center;
     font-size: 2em;
 }
@@ -31,9 +32,10 @@ nav ul::after{
     clear: both;
 }
 nav{
+    display:initial;
     width: 70%;
-    margin: 0 auto;
-    position:sticky;
+    margin:0 auto;
+  
     background: #E8CBC0;
     background: -webkit-linear-gradient(to right, #636FA4, #E8CBC0);
     background: linear-gradient(to right, #636FA4, #E8CBC0);
@@ -60,7 +62,7 @@ footer{
     
 }
 .presentation{
-    font-size: 25px;
+    font-size: 30px;
     text-align: justify;
     margin-left: 100px;
 }
@@ -69,17 +71,32 @@ footer{
 html{
     width:100%;
     height:100%;
-    font-size:100%;
   }
-body {
+  body{
     background: #E8CBC0;
     background: -webkit-linear-gradient(to right, #636FA4, #E8CBC0);
     background: linear-gradient(to right, #636FA4, #E8CBC0);
-      font-size:1em;
+    }
+    body > div > div
+    {
+        font-size:18px;
     }
 *{
     box-sizing:border-box
   }
+#menu-lat
+{
+    float:left;
+    width:360px;
+}
+.princip
+{
+    margin-left:400px;
+}
+.princip h1
+{
+    text-align: center;
+}
 #menu-lat ul {
     width:300px;
     list-style:none;
@@ -97,7 +114,7 @@ body {
     text-decoration:none;
     color:#f7f7f7;
     text-transform:uppercase;
-    
+    display:block;
   }
   
 #menu-lat ul li:hover {
@@ -125,78 +142,34 @@ body {
     margin-left:185px
   }
 
-#effectif table{
+div[class="princip"] table{
     border:2px solid white;
     border-collapse: collapse;
     width: 50%;
-}
-#effectif td{
-    border:2px solid white;
-    border-collapse: collapse;
-    width: 50%;
-}
-#effectif th{
-    border:2px solid white;
-    border-collapse: collapse;
-    width: 50%;
-}
-#effectif th
-{
-    text-align: left;
-    padding : 16px;
-    font-size:20px;
-}
-#effectif td
-{
-    text-align: left;
-    padding : 16px;
-    font-size:20px;
-}
-
-#effectif table
-{
-    margin-left:auto;
-    margin-right: auto;
-}
-#effectif h1
-{
-    text-align:center;
-}
-#competition table{
-    border:2px solid white;
-    border-collapse: collapse;
-    width: 50%;
-}
-#competition td{
-    border:2px solid white;
-    border-collapse: collapse;
-    width: 50%;
-}
-#competition th{
-    border:2px solid white;
-    border-collapse: collapse;
-    width: 50%;
-}
-#competition th
-{
-    text-align: left;
-    padding : 16px;
-    font-size:20px;
-}
-#competition td
-{
-    text-align: left;
-    padding : 16px;
-    font-size:20px;
-}
-
-#competition table
-{
+    margin-left: auto;
     margin-right:auto;
-    margin-left:auto;
 }
-#competition h1
+.princip td{
+    border:2px solid white;
+    border-collapse: collapse;
+    width: 50%;
+    text-align: left;
+    padding : 16px;
+    font-size:20px;
+}
+.princip th{
+    border:2px solid white;
+    border-collapse: collapse;
+    width: 50%;
+    text-align: left;
+    padding : 16px;
+    font-size:20px;
+}
+#contenus > div.recherche
 {
-    text-align:center;
+    clear:left;
 }
-
+footer
+{
+    clear:left;
+}
