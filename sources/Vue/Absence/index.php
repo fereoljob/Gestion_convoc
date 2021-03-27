@@ -1,35 +1,22 @@
-<div id="competition" >
-    <h1>Calendrier des rencontres </h1>
+<div class="princip" >
+    <h1>Liste des absences </h1>
     <table>
         <thead>
-            <th>Nom compétition</th>
-            <th>Equipe</th>
-            <th>Equipe adverse</th>
+            <th>Nom et prenom joueur</th>
+            <th>Type d'absence</th>
             <th>Date</th>
-            <th>Heure</th>
-            <th>Terrain</th>
-            <th>Site</th>
         </thead>
         <tbody>
         <?php
-        while($resul=$donnees["competitions"]->fetch(PDO::FETCH_ASSOC))
+        $matab=["N"=>"Non Licencié","A"=>"Absent(e)","B"=>"Blessé(e)","S"=>"Suspendu(e)"];
+        foreach($donnees as $tab)
         {
             echo "<tr>";
-            foreach($resul as $key => $value)
-            {
-                if($key=="id_compet")
-                {
-                        continue;
-                }
-                else
-                {
-                    echo "<td>";
-                    echo $this->nettoyer($value);
-                    echo "</td>";
-                }
-            }
+                echo "<td>$tab[id_joueur]</td>";
+                echo "<td>";echo $matab[$tab['type_absence']];echo "</td>";
+                echo "<td>$tab[dateAb]</td>";
             echo "</tr>";
-            }
+        }
         ?>
         </tbody>
     </table>

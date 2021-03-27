@@ -125,7 +125,10 @@ html{
       transition: all .8s;
   }
   
-  
+.princip
+{
+    font-size: 19px;
+}
 #menu-lat ul > li > ul{
     opacity:0;   
     display:none;
@@ -142,14 +145,14 @@ html{
     margin-left:185px
   }
 
-div[class="princip"] table{
+.liste table,div[class="princip"] table{
     border:2px solid white;
     border-collapse: collapse;
     width: 50%;
     margin-left: auto;
     margin-right:auto;
 }
-.princip td{
+.liste td,div[class="princip"] td{
     border:2px solid white;
     border-collapse: collapse;
     width: 50%;
@@ -157,7 +160,7 @@ div[class="princip"] table{
     padding : 16px;
     font-size:20px;
 }
-.princip th{
+.liste th,div[class="princip"] th{
     border:2px solid white;
     border-collapse: collapse;
     width: 50%;
@@ -165,9 +168,24 @@ div[class="princip"] table{
     padding : 16px;
     font-size:20px;
 }
-#contenus > div.recherche
+.recherche
 {
-    clear:left;
+    float:right;
+    width: 550px;
+    margin-right: 400px;
+    padding:60px 0px;
+    font-size: 20px;
+}
+.recherche2
+{  
+    padding:60px 0px;
+    float:left;
+    width: 850px;
+    font-size: 20px;
+}
+.liste
+{
+    clear:both;
 }
 footer
 {

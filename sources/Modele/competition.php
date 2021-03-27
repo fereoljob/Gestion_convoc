@@ -22,4 +22,17 @@ class competition extends Modele
         $reponses = $this->executerRequete($sql,$param);
         return $reponses;
     }
+    public function retirerCompe($id)
+    {
+        $sql = "delete from competition where id_compet=?";
+        $reponses = $this->executerRequete($sql,array($id));
+        return $reponses;
+    }
+    public function Maj($param)
+    {
+        $sql = "update competition set nom_compet=?,nom_equipe=?,equipe_adv=?,datecompet=?,heure=?,
+        terrain=?,site=? where id_compet=?";
+        $reponses = $this->executerRequete($sql,$param);
+        return $reponses;
+    }
 }

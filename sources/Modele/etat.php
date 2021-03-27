@@ -18,23 +18,24 @@ class etat extends Modele
         return $reponses;
     }
     //inserer absence
-    public function InsererAb($type,$date,$id_joueur)
+    public function ajouterJoueur($param)
     {
         $sql = 'insert into etat values(null,?,?,?)';
-        $this->executerRequete($sql,array($type,$date,$id_joueur));
+        $reponses = $this->executerRequete($sql,$param);
+        return $reponses;
     }
-    //mise a jour d'un champs
-    public function Maj($id_joueur=null,$date=null,$type=null)
+    //suppression0 d'un enregistrement
+    public function retirerJoueur($param)
     {
-        if($id_joueur==null)
-        {
-            $sql = 'delete from etat where id_joueur=? and dateAb=?';
-            $this->executerRequete($sql,array($id_joueur,$date));
-        }
-        else
-        {
-            $sql = 'update etat set type_absence=? where id_joueur =?';
-            $this->executerRequete($sql,array($type,$id_joueur));
-        }
+            $sql = 'delete from etat where id_joueur=?';
+            $reponses = $this->executerRequete($sql,$param);
+            return $reponses;
     }
+    public function modifier($param)
+    {
+        $sql = 'update etat set type_absence=?,dateAb=?, id_joueur=? where id_absencer=?';
+        $reponses= $this->executerRequete($sql,$param);
+        return $reponses;
+    }
+
 }

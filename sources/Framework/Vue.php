@@ -17,7 +17,7 @@ class Vue{
     }
     public function generer($donnes)
     {
-        $tab = ["Effectif","Competition","Etat","Convoc"];
+        $tab = ["Effectif","Competition","Absence","Convoc"];
         //Generation de la partie specifique de la vue
         if (in_array($this->control,$tab))
         { 

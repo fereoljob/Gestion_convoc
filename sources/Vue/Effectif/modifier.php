@@ -15,12 +15,39 @@
                 <option value="Libre">Libre</option>
             </select><br/><br/>
             <input type="submit" name="ajouter" value="Ajouter" />
-            <input type="submit" name="retirer" value="Retirer" />
         </fieldset>
     </form>
 </div>
-<div class="princip">
-    <br/><br/><br/>
+
+<div class="recherche2">
+    <form action="Effectif/modif" method="post">
+        <fieldset>
+            <h3>Id du joueur  et les nouveaux nom et prénoms </h3>
+            <label for="lid"><strong>Id joueur:</label>&nbsp
+            <input type="text" name="lid" /><br/><br/>
+            <label for="nom" >Nom: </label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            <input type="text" name="nom" /><br/><br/>
+            <label for="prenom" >Prenom: </label>&nbsp&nbsp
+            <input type="text" name = "prenom" /><br/><br/>
+            <label for ="licence" >Licence:</strong></label>&nbsp&nbsp&nbsp&nbsp
+            <select name="licence" >
+                <option value="Sans licence">Sans licence </option>
+                <option value="Libre" >Libre</option>
+            </select><br/><br/>
+            <input type="submit" name="Maj" value="Mettre à jour" />
+        </fieldset>
+    </form>
+</div>
+<div class="recherche">
+    <form action="Effectif/modif" method="post">
+        <fieldset>
+            <label for="lid"><strong>Id joueur:</strong>(consulter liste joueurs plus bas)<label><br/><br/>
+                <input type="text" name="lid" /><br/><br/>
+                <input type="submit" name="retirer" value="Retirer" />
+        </fieldset>
+    </form>
+</div>
+<div class="liste">
     <form action="Effectif/modifier" method="post" >
         <label for="listejoueurs" ><h2>Pour consulter la liste des joueurs</h2></label>
         <input type="submit" value="cliquez ici" name="listejoueurs" />
@@ -36,6 +63,7 @@
             </form>";
             echo "<table>
                 <thead>
+                    <th>id joueur</th>
                     <th>Nom</th>
                     <th>Prenom</th>
                     <th>Licence</th>
@@ -45,6 +73,9 @@
                 {
                     echo "<tr>";
                     echo "<td>";
+                    echo $this->nettoyer($resul["id_joueur"]);
+                    echo "</td>";
+                    echo "<td>";
                     echo $this->nettoyer($resul["nom"]);
                     echo "</td>";
                     echo "<td>";
@@ -53,6 +84,7 @@
                     echo "<td>";
                     echo $this->nettoyer($resul["licence"]);
                     echo "</td>";
+                    echo "</tr>";
                 }
                 echo "</tbody>
             </table>";

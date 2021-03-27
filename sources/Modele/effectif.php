@@ -23,7 +23,6 @@ class effectif extends Modele
             $sql = 'select * from effectif where id_joueur=?';
             $reponses = $this->executerRequete($sql,array($id_joueur));
         }
-        $reponses = $this->executerRequete($sql);
         return $reponses;
     }
     //insertion joueur
@@ -36,12 +35,13 @@ class effectif extends Modele
     //Modification table effectif(convo ou licence) 
     public function modifier($param)
     {
-        $sql = 'update effectif set ?=? where nom=? and prenom=?';
-        $this->executerRequete($sql,$param);
+        $sql = 'update effectif set nom=?,prenom=?,licence=? where id_joueur=?';
+        $reponses= $this->executerRequete($sql,$param);
+        return $reponses;
     }
     public function retirerJoueur($param)
     {
-        $sql = 'delete from effectif where nom=? and prenom=?';
+        $sql = 'delete from effectif where id_joueur=?';
         $reponses = $this->executerRequete($sql,$param);
         return $reponses;
     }

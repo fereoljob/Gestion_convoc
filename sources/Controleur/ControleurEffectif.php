@@ -2,14 +2,17 @@
 
 require_once 'ControleurSecurise.php';
 require_once 'Modele/effectif.php';
+require_once 'Modele/etat.php';
 
 class ControleurEffectif extends ControleurSecurise
 {
 
     private $effectif;
+    private $absence;
     public function __construct()
     {
         $this->effectif= new effectif();
+        $this->absence=new etat();
     }
     public function index()
     {
@@ -29,19 +32,22 @@ class ControleurEffectif extends ControleurSecurise
     }
     public function modif()
     {
-        if(($this->requete->existeParametre("nom")) && ($this->requete->existeParametre("prenom")))
+        if(($this->requete->existeParametre("nom")) || ($this->requete->existeParametre("prenom"))||
+        ($this->requete->existeParametre("lid")))
         {
-            $nom = $this->requete->getParametre("nom");
-            $prenom= $this->requete->getParametre("prenom");
-            $licence = $this->requete->getParametre("licence");
+            $id = $this->requete->existeParametre("lid")?$this->requete->getParametre("lid"):"";
+            $nom = $this->requete->existeParametre("nom") ? $this->requete->getParametre("nom"):"";
+            $prenom=$this->requete->existeParametre("prenom")?$this->requete->getParametre("prenom"):"";
+            $licence = $this->requete->existeParametre("licence")?$this->requete->getParametre("licence"):"";
             if($this->requete->existeParametre("retirer"))
             {
-                $resul = $this->effectif->retirerJoueur(array($nom,$prenom));
+                $resul = $this->effectif->retirerJoueur(array($id));
                 if($resul)
                 {
                     echo "<script type='text/javascript' > alert('Suppression reussie');
                     </script>";
                 }
+                $this->absence->Maj($id);
             }
             else if($this->requete->existeParametre("ajouter"))
             {
@@ -50,6 +56,14 @@ class ControleurEffectif extends ControleurSecurise
                 {
                     echo "<script type='text/javascript' >alert('Insertion reussie');
                     </script>";
+                }
+            }
+            else
+            {
+                $resul = $this->effectif->modifier(array($nom,$prenom,$licence,$id));
+                if($resul)
+                {
+                    echo "<script type='text/javascript' > alert('Mise à jour reussie');</script>";
                 }
             }
         }

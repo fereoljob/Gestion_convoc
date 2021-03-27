@@ -2,14 +2,14 @@
 <form method="post" action="Convocation/index" >
     <fieldset>
         <legend><h1>Consultation convocation</h1></legend>
-                <label for="ladate">Date:</label>&nbsp&nbsp&nbsp&nbsp&nbsp
+                <label for="ladate"><strong>Date:</label>&nbsp&nbsp&nbsp&nbsp&nbsp
                 <input type="date" name="ladate" required/>
                 <br/><br/>
                 <label for="lequipe">Equipe:</label>
                 <select name="Equipe">
-                        <option value="SENIORS_A" >SENIORS_A</option>
+                        <option value="SENIORS_A" selected >SENIORS_A</option>
                         <option value="SENIORS_B" >SENIORS_B</option>
-                        <option value="SENIORS_C" >SENIORS_C</option>
+                        <option value="SENIORS_C" >SENIORS_C</option></strong>
                 </select>
                 <br/><br/>
             <input type="submit" name="Envoyer" value="Consulter" />
