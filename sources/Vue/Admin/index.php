@@ -2,8 +2,7 @@
     <ul>
         <li><a href=#><strong>Convocations</strong></a>
             <ul>
-                <li><a href=#>Consulter</a></li>
-                <li><a href=#>Créer</a></li>
+                <li><a href="Convocation/creer">Créer</a></li>
                 <li><a href=#>Publier</a></li>
             </ul>
         </li>
@@ -11,21 +10,21 @@
             <ul>
                 <li><a href="Effectif/index">Consulter</a></li>
                 <li><a href="Effectif/modifier">Ajouter/Modifier</a></li>
-                <li><a href=#>Mettre à Jour</a></li>
+                <li><a href="Effectif/maj">Mettre à Jour</a></li>
             </ul>
         </li>
         <li><a href = #><strong>Calendrier des rencontres</strong></a>
             <ul>
                 <li><a href ="Competition/index">Consulter</a></li>
                 <li><a href="Competition/modifier">Ajouter/Modifier</a></li>
-                <li><a href=#>Mise à jour</a></li>
+                <li><a href="Competition/maj">Mise à jour</a></li>
             </ul>
         </li>
         <li><a href=# ><strong>Absences</strong></a>
             <ul>
                 <li><a href="Absence/index">Consulter</a></li>
                 <li><a href="Absence/modifier">Ajouter/Modifer</a></li>
-                <li><a href=#>Mise à jour</a></li>
+                <li><a href="Absence/maj">Mise à jour</a></li>
             </ul>
         </li>
     </ul>
