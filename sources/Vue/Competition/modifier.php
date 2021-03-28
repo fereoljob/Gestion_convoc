@@ -60,7 +60,7 @@
 <div class="recherche">
     <form action="Competition/modif" method="post">
         <fieldset>
-            <label for="lid"><strong>Id joueur:</strong>(consulter liste joueurs plus bas)<label><br/><br/>
+            <label for="lid"><strong>Id compet:</strong>(consulter liste des competitions plus bas)<label><br/><br/>
                 <input type="text" name="lid" required /><br/><br/>
                 <input type="submit" name="retirer" value="Retirer" />
         </fieldset>

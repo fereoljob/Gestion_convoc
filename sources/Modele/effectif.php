@@ -45,5 +45,11 @@ class effectif extends Modele
         $reponses = $this->executerRequete($sql,$param);
         return $reponses;
     }
+    public function getJoueurid($param)
+    {
+        $sql = "select id_joueur from effectif where nom=? and prenom =?";
+        $reponses = $this->executerRequete($sql,$param);
+        return $reponses;
+    }
     
 }

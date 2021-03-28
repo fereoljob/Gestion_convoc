@@ -3,16 +3,22 @@
 require_once 'ControleurSecurise.php';
 require_once 'Modele/effectif.php';
 require_once 'Modele/etat.php';
+require_once 'Modele/competition.php';
+require_once 'Modele/convocation.php';
 
-class ControleurEffectif extends ControleurSecurise
+class ControleurConvoc extends ControleurSecurise
 {
 
     private $effectif;
     private $absence;
+    private $competition;
+    private $convocation;
     public function __construct()
     {
         $this->effectif= new effectif();
         $this->absence=new etat();
+        $this->competition = new competition();
+        $this->convocation = new convocation();
     }
     public function index()
     {

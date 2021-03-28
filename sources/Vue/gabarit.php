@@ -14,7 +14,7 @@
             </header>
             <nav>
                 <ul>
-                    <li><a href="" ><strong>Accueil</strong></a></li>
+                    <li><a href=""><strong>Accueil</strong></a></li>
                     <li><a href="Convocation/index" ><strong>Convocations</strong></a></li>
                     <li><a href="Competition/index"><strong>Calendrier</strong></a></li>
                     <li><a href="Effectif/index"><strong>Effectifs</strong></a></li>

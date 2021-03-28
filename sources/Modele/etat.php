@@ -24,16 +24,22 @@ class etat extends Modele
         $reponses = $this->executerRequete($sql,$param);
         return $reponses;
     }
-    //suppression0 d'un enregistrement
+    //suppression d'un enregistrement
     public function retirerJoueur($param)
     {
-            $sql = 'delete from etat where id_joueur=?';
-            $reponses = $this->executerRequete($sql,$param);
-            return $reponses;
+        $sql = 'delete from etat where id_etat=?';
+        $reponses = $this->executerRequete($sql,$param);
+        return $reponses;
+    }
+    public function maj($param)
+    {
+        $sql = 'delete from etat where id_joueur=?';
+        $reponses = $this->executerRequete($sql,$param);
+        return $reponses;
     }
     public function modifier($param)
     {
-        $sql = 'update etat set type_absence=?,dateAb=?, id_joueur=? where id_absencer=?';
+        $sql = 'update etat set type_absence=?,dateAb=? where id_etat=?';
         $reponses= $this->executerRequete($sql,$param);
         return $reponses;
     }

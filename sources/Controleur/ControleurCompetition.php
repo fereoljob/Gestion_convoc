@@ -16,6 +16,10 @@ class ControleurCompetition extends ControleurSecurise
         $competitions = $this->competit->getCompetitions();
         $this->genererVue(array("competitions"=>$competitions));
     }
+    public function maj()
+    {
+        $this->genererVue();
+    }
     public function modifier()
     {
         if($this->requete->existeParametre("listecompet"))
@@ -66,6 +70,64 @@ class ControleurCompetition extends ControleurSecurise
             }
         }
         $this->setAction("modifier");
-        $this->genererVue();
+        $this->modifier();
+    }
+    public function import()
+    {
+        if($this->requete->existeParametre("fichier"))
+        {
+            $error="Importation reussie(s)";
+            $nomfichier = $this->requete->getParametre("fichier");
+            $this->setAction("maj");
+            $f = fopen($nomfichier["tmp_name"],"r");
+            flock($f,LOCK_EX);
+            $count=0;
+            $nbr=0;
+            $reponses=array();
+            while(($arr=fgetcsv($f,","))!==FALSE)
+            {
+                if(count($arr)!=11)
+                {
+                    $error = "Les informations ne sont pas corrects pour la table competition";
+                    break; 
+                }
+                $count+=1 ;
+                $repon=false;
+                if($count==1){continue ;}
+                $ar[0]=$arr[1];
+                $ar[1]=$arr[2];
+                $ar[2]=$arr[5];
+                $ar[3]=($arr[6]=="")?null:$arr[6];
+                $ar[4]=($arr[7]=="")?null:$arr[7];
+                $ar[5]=$arr[9];
+                $ar[6]=$arr[10];
+                try{
+                $repon = $this->competit->ajouterCompe($ar);
+                }
+                catch(Exception $e)
+                {
+                    echo "<script type='text/javascript' >";
+                    echo 'alert("';
+                    echo $e->getMessage();
+                    echo '");</script>';
+                }
+                if($repon==true)
+                {
+                    $nbr+=1;
+                    $nbre= $count-1;
+                    $reponses[]="$nbre importation reussie";
+                    
+                }
+                else
+                {
+                    $nbre= $count-1;
+                    $reponses[]="$nbre ligne : Echec, Verifier le contenu du fichier importé";
+                }
+            }
+            flock($f,LOCK_UN);
+            fclose($f);
+            $this->setAction("maj");
+            $this->genererVue(array("nbr"=>$nbr,"histo"=>$reponses,"nbre"=>$count,"error"=>$error));
+        }
     }
 }

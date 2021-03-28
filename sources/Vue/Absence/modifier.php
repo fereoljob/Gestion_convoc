@@ -11,10 +11,26 @@
             </select><br/><br/>
             <label for="ladate" >Date: </label>&nbsp
             &nbsp&nbsp
-            <input type="date" name="ladate" /><br/><br/>
-            <label for="lid" > Id joueur:</strong></label>
+            <input type="date" name="ladate" required/><br/><br/>
+            <label for="Joueur" > Joueur:</strong></label>
             &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-            <input type="text" name="lid" /><br/><br/>
+            <select name="Joueur" >
+                <?php
+                    $tablau=$donnees["liste"][0];
+                    echo "<option value='$tablau[nom] $tablau[prenom]' selected >";
+                    echo "$tablau[nom] $tablau[prenom]";
+                    echo "</option>";
+                    foreach($donnees['liste'] as $key=>$tablo)
+                    {
+                        if($key==0)
+                            continue;
+                        
+                        echo "<option value='$tablo[nom] $tablo[prenom]' >";
+                        echo "$tablo[nom] $tablo[prenom]";
+                        echo "</option>";
+                    }
+                ?>
+            </select><br/><br/>
             <input type="submit" name="ajouter" Value="Ajouter" />
         </fieldset>
     </form>
@@ -25,7 +41,7 @@
         <fieldset>
             <h3>Id absence à modifier et renseigner les nouvelles valeures </h3>
             <label for="lida"><strong>Id absence:</label>&nbsp
-            <input type="text" name="lida" /><br/><br/>
+            <input type="text" name="lida" required /><br/><br/>
             <label for="type">Type d'absence:</label>
             <select name="type" >
                 <option value="A" selected >Absent(e)</option>
@@ -35,10 +51,7 @@
             </select><br/><br/>
             <label for="ladate" >Date: </label>
             &nbsp&nbsp&nbsp&nbsp
-            <input type="date" name="ladate" /><br/><br/>
-            <label for="lid" > Id joueur:</label>
-            &nbsp&nbsp&nbsp
-            <input type="text" name="lid" /><br/><br/>
+            <input type="date" name="ladate" required/><br/><br/>   
             <input type="submit" name="Maj" value="Mettre à jour" />
         </fieldset>
     </form>
@@ -47,7 +60,7 @@
     <form action="Absence/modif" method="post">
         <fieldset>
             <label for="lida"><strong>Id absence:</strong>(consulter liste joueurs absents plus bas)<label><br/><br/>
-                <input type="text" name="lida" />
+                <input type="text" name="lida" required />
             <br/><br/>
                 <input type="submit" name="retirer" value="Retirer" />
         </fieldset>
@@ -73,16 +86,18 @@
                 <th>Nom et prenom joueur</th>
                 <th>Type d'absence</th>
                 <th>Date</th>
+                <th>id joueur</th>
             </thead>
             <tbody>";
             $matab=["N"=>"Non Licencié","A"=>"Absent(e)","B"=>"Blessé(e)","S"=>"Suspendu(e)"];
-            foreach($donnees as $tab)
+            foreach($donnees["tab"] as $tab)
             {
                 echo "<tr>";
                     echo "<td>$tab[id_etat]</td>";
-                    echo "<td>$tab[id_joueur]</td>";
+                    echo "<td>$tab[noms]</td>";
                     echo "<td>";echo $matab[$tab['type_absence']];echo "</td>";
                     echo "<td>$tab[dateAb]</td>";
+                    echo "<td>$tab[id_joueur]</td>";
                 echo "</tr>";
             }
             echo "

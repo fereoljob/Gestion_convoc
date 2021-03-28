@@ -8,7 +8,7 @@ class Routeur
     public function routerRequete()
     {
         try{
-            $requete  = new Requete(array_merge($_GET,$_POST));
+            $requete  = new Requete(array_merge($_GET,$_POST,$_FILES));
             $controleur = $this->creerControleur($requete);
             $action = $this->creerAction($requete);
             $controleur->executerAction($action);
