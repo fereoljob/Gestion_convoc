@@ -23,7 +23,7 @@ class ControleurEffectif extends ControleurSecurise
     {
         if($this->requete->getSession()->getAttribut("type")=="Entraineur")
         {
-            echo '<script type="text/javascript" > Action non autorisé! Connectez vous en tant que Secretaire.");
+            echo '<script type="text/javascript" >alert("Action non autorisé! Connectez vous en tant que Secretaire.");
             </script>';
             $this->setAction("index");
             $this->index();

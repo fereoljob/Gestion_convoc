@@ -66,7 +66,7 @@ class ControleurCompetition extends ControleurSecurise
             $id = $this->requete->existeParametre("lid")?$this->requete->getParametre("lid"):"";
             $nomcompe = $this->requete->existeParametre("nomcompet")?$this->requete->getParametre("nomcompet"):"";
             $equipe = $this->requete->existeParametre("Equipe")?$this->requete->getParametre("Equipe"):"";
-            $equipAdv = $this->requete->existeParametre("equipeAdv")?$this->requete->getParametre("equipAdv"):"";
+            $equipAdv = $this->requete->existeParametre("Adversaire")? $this->requete->getParametre("Adversaire"):"";
             $date = $this->requete->existeParametre("ladate")?$this->requete->getParametre("ladate"):"";
             $heure = $this->requete->existeParametre("heure")?$this->requete->getParametre("heure"):"";
             $terrain = $this->requete->existeParametre("terrain")?$this->requete->getParametre("terrain"):"";

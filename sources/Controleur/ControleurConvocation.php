@@ -57,23 +57,21 @@ class ControleurConvocation extends Controleur{
                     }
                     $compes = $this->compe->getCompet($tab["id_compet"]);
                     $competition = $compes->fetch(PDO::FETCH_ASSOC);
-                    $this->genererVue(array('compet'=>$datecompet,'joueur'=>$tableau,'compe'=>$competition,'trouve'=>"oui","equipe"=>$equipes));
+                    $this->genererVue(array('joueur'=>$tableau,'compe'=>$competition,'trouve'=>"oui"));
                 }
                 else
                 {
-                    $this->genererVue(array("compet"=>$datecompet,"trouve"=>"non","equipe"=>$equipes));
+                    $this->genererVue(array("trouve"=>"non"));
                 }
             }
             else
             {
-                $this->genererVue(array("compet"=>$datecompet,"trouve"=>"non","equipe"=>$equipes));
+                $this->genererVue();
             }
         }
         else
         {
-            $datecompets = $this->compe->getCompetEq("SENIORS_A");
-            $datecompet = $datecompets->fetchAll(PDO::FETCH_ASSOC);
-            $this->genererVue(array("compet"=>$datecompet,"trouve"=>"null","equipe"=>$equipes));
+            $this->genererVue();
         }
             
     }

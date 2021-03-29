@@ -228,7 +228,7 @@ class ControleurConvoc extends ControleurSecurise
     {
         if($this->requete->getSession()->getAttribut("type")!="Entraineur")
         {
-            echo '<script type="text/javascript" >alert("Action non autorisé! Connectez vous en tant que Entraineur.");
+            echo '<script type="text/javascript" >alert("Action non autorisée! Connectez vous en tant que Entraineur.");
             </script>';
             $this->setAction("index");
             $this->index();
@@ -241,9 +241,7 @@ class ControleurConvoc extends ControleurSecurise
                 $re = $this->convocation->publier("oui",$idconvo);
                 if($re)
                 {
-                    echo '<script>alert("';
-                    echo "publication effectué avec succès!";
-                    '");</script>';
+                    echo '<script type="text/javascript" > alert("Publication effectuée avec succès!"); </script>';
                 }
             }
             $this->setAction("index");

@@ -42,8 +42,8 @@
                         <option value="SENIORS_B" >SENIORS_B</option>
                         <option value="SENIORS_C" >SENIORS_C</option>
                 </select></td></tr><tr><td>
-            <label for="equipAdv" ><strong>Equipe adverse:</strong></label></td><td>
-            <input type="text" name="equipAdv" required /></td></tr><tr><td>
+            <label for="Adversaire" ><strong>Equipe adverse:</strong></label></td><td>
+            <input type="text" name="Adversaire" required /></td></tr><tr><td>
             <label for="ladate" > <strong>Date:</strong></label></td><td>
             <input type="date" name="ladate" required /></td></tr><tr><td>
             <label for="heure" ><strong>Heure:</strong></label></td><td>

@@ -59,3 +59,5 @@ create table occupation
 );
 alter table competition AUTO_INCREMENT=101;
 alter table etat AUTO_INCREMENT = 1001;
+insert into administrateur values(null,"john","doe","Admin","Admin","Entraineur");
+insert into administrateur values(null,"france","Essai","Admin2","Admin2","Secretaire");
