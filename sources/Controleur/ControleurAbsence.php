@@ -54,8 +54,8 @@ class ControleurAbsence extends ControleurSecurise
                 $resul = $this->absents->retirerJoueur(array($lida));
                 if($resul)
                 {
-                    echo "<script type='text/javascript'> alert('Suppression reussie');
-                    </script>";
+                    echo '<script type="text/javascript"> alert("Suppression reussie");
+                    </script>';
                 }
             }
             else if($this->requete->existeParametre("ajouter"))
@@ -65,11 +65,19 @@ class ControleurAbsence extends ControleurSecurise
                 $prenom = trim($lesnom[1]);
                 $info = $this->effectif->getJoueurid(array($nom,$prenom));
                 $lid = $info->fetch(PDO::FETCH_ASSOC);
-                $resul = $this->absents->ajouterJoueur(array($type,$date,$lid['id_joueur']));
+                try{
+                    $resul = $this->absents->ajouterJoueur(array($type,$date,$lid['id_joueur']));
+                }catch(Exception $e)
+                {
+                    echo "<script type='text/javascript' >";
+                                echo 'alert("';
+                                echo $e->getMessage();
+                                echo '");</script>';
+                }
                 if($resul)
                 {
-                    echo "<script type='text/javascript' >alert('Insertion reussie');
-                    </script>";
+                    echo '<script type="text/javascript" >alert("Insertion reussie");
+                    </script>';
                 }
             }
             else
@@ -77,7 +85,7 @@ class ControleurAbsence extends ControleurSecurise
                 $resul = $this->absents->modifier(array($type,$date,$lida));
                 if($resul)
                 {
-                    echo "<script type='text/javascript' > alert('Mise à jour reussie');</script>";
+                    echo '<script type="text/javascript" > alert("Mise à jour reussie");</script>';
                 }
             }
         $this->setAction("modifier");
@@ -97,9 +105,9 @@ class ControleurAbsence extends ControleurSecurise
             $reponses=array();
             $matab = ['A','B','N','S'];
             $arrt=fgetcsv($f,",");
+            $count+=1 ;
             while(($arr=fgetcsv($f,","))!==FALSE)
             {
-                $count+=1 ;
                 $repon=false;
                 if($count==1){
 
@@ -119,6 +127,7 @@ class ControleurAbsence extends ControleurSecurise
                     $info = $res->fetch(PDO::FETCH_ASSOC);
                     foreach($arr as $key=>$val)
                     {
+                        
                         if(in_array($val,$matab))
                         {
                             try
@@ -144,6 +153,7 @@ class ControleurAbsence extends ControleurSecurise
                                 $nbre= $count;
                                 $reponses[]="$nbre ligne : Echec, Verifier le contenu du fichier importé";
                             }
+                            $count+=1;
                         }
                     }
 

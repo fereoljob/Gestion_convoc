@@ -3,6 +3,7 @@ drop table if exists competition;
 drop table if exists etat;
 drop table if exists convocation;
 drop table if exists administrateur;
+drop table if exists occupation;
 
 
 create table effectif
@@ -10,8 +11,6 @@ create table effectif
 nom varchar(15),
 prenom  varchar(25),
 licence  varchar(20) check (licence in ("Libre","Sans licence")),
-selectionnee varchar(4) check (selectionnee in ('oui','non')),
-id_convocation varchar(30) references convocation(id_convocation),
 Unique(nom,prenom)
 );
 create table competition
@@ -38,6 +37,7 @@ DateConvoc date,
 nomEquipe varchar(15),
 publie varchar(5) check (publie in ('oui','non')),
 equipe_adv varchar(20),
+nbre_convok int default 0,
 id_compet int references competition(id_compet),
 unique(DateConvoc,nomEquipe));
 create table administrateur
@@ -48,6 +48,14 @@ create table administrateur
     _login varchar(30),
     mot_de_passe varchar(30),
     typAdmin varchar(30) check(typAdmin in('Secretaire','Entraineur'))
+);
+create table occupation
+(
+    id_occup int primary key AUTO_INCREMENT,
+    id_joueur int references effectif(id_joueur),
+    dateOccu date,
+    convo int references convocation(id_convocation),
+    unique(id_joueur,dateOccu)
 );
 alter table competition AUTO_INCREMENT=101;
 alter table etat AUTO_INCREMENT = 1001;

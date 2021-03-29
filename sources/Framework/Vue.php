@@ -14,6 +14,10 @@ class Vue{
             $fichier = $fichier.$controleur."/";
         }
         $this->fichier = $fichier.$action.".php";
+        if($action=="index")
+            $this->titre="Club_sportif.com/".$controleur;
+        else
+            $this->titre="Club_sportif.com/".$action;
     }
     public function generer($donnes)
     {

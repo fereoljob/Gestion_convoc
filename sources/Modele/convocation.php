@@ -3,21 +3,58 @@ require_once 'Framework/Modele.php';
 class convocation extends Modele
 {
     //insertion d'une convocation
-    public function CreationConvo($id_convocation,$date_convo,$nomEquipe,$publie)
+    public function CreationConvo($date_convo,$nomEquipe,$equipeadverse,$nbreconvo,$idcompe)
     {
-        $sql = 'insert into convocation values(?,?,?,?)';
-        $this->executerRequete($sql,array($id_convocation,$date,$nomEquipe,$publie));
+        $sql = 'insert into convocation values(null,?,?,"non",?,?,?)';
+        $reponses  =$this->executerRequete($sql,array($date_convo,$nomEquipe,$equipeadverse,$nbreconvo,$idcompe));
+        return $reponses;
     }
-    public function getConvo($date,$equipe)
+    public function getConvos($date,$equipe,$idcompe)
     {
-        $sql = 'select * from convocation where DateConvoc=? and nomEquipe=?';
+        $sql = 'select * from convocation where DateConvoc=? and nomEquipe=? and id_compet =?';
+        $reponses = $this->executerRequete($sql,array($date,$equipe,$idcompe));
+        return $reponses;
+    }
+    public function getConvo($id)
+    {
+        $sql = 'select * from convocation where id_convocation=?';
+        $reponses = $this->executerRequete($sql,array($id));
+        return $reponses;
+    }
+    public function getAllConvo()
+    {
+        $sql = 'select * from convocation ';
+        $reponses = $this->executerRequete($sql,array());
+        return $reponses;
+    }
+    public function getConvoN()
+    {
+        $sql = 'select * from convocation where publie=?';
+        $reponses = $this->executerRequete($sql,array("non"));
+        return $reponses;
+    }
+    public function getConvo2($date,$equipe)
+    {
+        $sql = "select * from convocation  where DateConvoc=? and nomEquipe=?";
         $reponses = $this->executerRequete($sql,array($date,$equipe));
         return $reponses;
     }
-    //modification champs publiable
-    public function publier($val,$date,$equipe)
+    public function maj($val,$id)
     {
-        $sql = 'update convocation set publie=? where DateConvoc=? and nomEquipe=?';
-        $this->executerRequete($sql,array($val,$date,$equipe));
+        $sql = 'update convocation set nbre_convok=? where id_convocation=?';
+        $reponses = $this->executerRequete($sql,array($val,$id));
     }
+    //modification champs publiable
+    public function publier($val,$id)
+    {
+        $sql = 'update convocation set publie=? where id_convocation=?';
+        $this->executerRequete($sql,array($val,$id));
+    }
+    public function getConvoEq($equipe)
+    {
+        $sql = "select * from convocation where nomEquipe=?";
+        $reponses = $this->executerRequete($sql,array($equipe));
+        return $reponses;
+    }
+
 }

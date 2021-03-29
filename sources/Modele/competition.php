@@ -16,6 +16,12 @@ class competition extends Modele
         $reponses = $this->executerRequete($sql);
         return $reponses;
     }
+    public function getCompetEq($equipe)
+    {
+        $sql = 'Select * from competition where nom_equipe=?';
+        $reponses = $this->executerRequete($sql,array($equipe));
+        return $reponses;
+    }
     public function ajouterCompe($param)
     {
         $sql="insert into competition values (null,?,?,?,?,?,?,?)";

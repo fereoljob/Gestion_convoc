@@ -5,7 +5,7 @@ require_once 'Modele/effectif.php';
 require_once 'Modele/etat.php';
 require_once 'Modele/competition.php';
 require_once 'Modele/convocation.php';
-
+require_once 'Modele/occupation.php';
 class ControleurConvoc extends ControleurSecurise
 {
 
@@ -13,122 +13,241 @@ class ControleurConvoc extends ControleurSecurise
     private $absence;
     private $competition;
     private $convocation;
+    private $occupation;
     public function __construct()
     {
         $this->effectif= new effectif();
         $this->absence=new etat();
         $this->competition = new competition();
         $this->convocation = new convocation();
+        $this->occupation = new occupation();
     }
     public function index()
     {
-        $joueurs = $this->effectif->getJoueur();
-        $this->genererVue(array("joueurs"=>$joueurs));
-    }
-    public function maj()
-    {
-        $this->genererVue();
+        $convoc = $this->convocation->getAllConvo();
+        $tableau = $convoc->fetchAll(PDO::FETCH_ASSOC);
+        foreach($tableau as $key=>$val)
+        {
+            $rep = $this->competition->getCompet($tableau[$key]["id_compet"]);
+            $info = $rep->fetch(PDO::FETCH_ASSOC);
+            $tableau[$key]["nom"]="$info[nom_compet]";
+            if($tableau[$key]["nbre_convok"]<11)
+                $tableau[$key]["publiable"]="Non";
+            else
+                $tableau[$key]["publiable"]="Oui";
+        }
+        $this->genererVue($tableau);
+
     }
     public function modifier()
     {
-        if($this->requete->existeParametre("listejoueurs"))
+        if($this->requete->getSession()->getAttribut("type")!="Entraineur")
         {
-            $joueurs = $this->effectif->getJoueur();
-            $this->genererVue(array("joueurs"=>$joueurs));
-        }else
+            echo '<script type="text/javascript" > alert("Action non autorisé! Connectez vous en tant que Entraineur.");
+            </script>';
+            $this->setAction("index");
+            $this->index();
+        }
+        else
         {
-            $this->genererVue(array());
+            if($this->requete->existeParametre("valider"))
+            {
+                $idconvo = $this->requete->getParametre("valider");
+                $repon = $this->convocation->getConvo($idconvo);
+                $tab = $repon->fetch(PDO::FETCH_ASSOC);
+                $ID = $tab["id_compet"];
+                $compe = $this->competition->getCompet($ID);
+                $tableau = $compe->fetch(PDO::FETCH_ASSOC);
+                $datecom = $tableau["datecompet"];
+                $libres = $this->effectif->getLibre($datecom);
+            }
+            $this->genererVue(array("competition"=>$tableau,"dispo"=>$libres,"convo"=>$tab));
         }
     }
     public function modif()
     {
-        if(($this->requete->existeParametre("nom")) || ($this->requete->existeParametre("prenom"))||
-        ($this->requete->existeParametre("lid")))
+        if($this->requete->getSession()->getAttribut("type")!="Entraineur")
         {
-            $id = $this->requete->existeParametre("lid")?$this->requete->getParametre("lid"):"";
-            $nom = $this->requete->existeParametre("nom") ? $this->requete->getParametre("nom"):"";
-            $prenom=$this->requete->existeParametre("prenom")?$this->requete->getParametre("prenom"):"";
-            $licence = $this->requete->existeParametre("licence")?$this->requete->getParametre("licence"):"";
-            if($this->requete->existeParametre("retirer"))
+            echo '<script type="text/javascript" > alert("Action non autorisé! Connectez vous en tant que Entraineur.");
+            </script>';
+            $this->setAction("index");
+            $this->index();
+        }
+        else
+        {
+            if($this->requete->existeParametre("Valider"))
             {
-                $resul = $this->effectif->retirerJoueur(array($id));
-                if($resul)
+                $lesids = $this->requete->getParametre("choix");
+                $idcomp = $this->requete->getParametre("idcomp");
+                $equi = $this->requete->getParametre("nomEquipe");
+                $adv = $this->requete->getParametre("adv");
+                $dateJ = $this->requete->getParametre("ladate");
+                $nb = count($lesids);
+                $Icon = $this->requete->getParametre("convol");
+                $bon = $this->convocation->getConvo($Icon);
+                $ress = $bon->fetch(PDO::FETCH_ASSOC);
+                $ancien = $ress["nbre_convok"];
+                $nouveau = $ancien+$nb;
+                $this->convocation->maj($nouveau,$Icon);
+                if($Icon!="")
                 {
-                    echo "<script type='text/javascript' > alert('Suppression reussie');
-                    </script>";
+                    foreach($lesids as $val)
+                    {
+                        $req = $this->occupation->insererOccu($val,$dateJ,$Icon);
+                    }
                 }
-                $this->absence->maj(array($id));
+                if($req)
+                    echo '<script>alert("Mise à jour reussie");</script>';
+                $this->setAction("index");
+                $this->index();
             }
-            else if($this->requete->existeParametre("ajouter"))
+        }
+    }
+    public function creer()
+    {
+        if($this->requete->getSession()->getAttribut("type")!="Entraineur")
+        {
+            echo '<script type="text/javascript" >alert("Action non autorisé! Connectez vous en tant que Entraineur.");
+            </script>';
+            $this->setAction("index");
+            $this->index();
+        }
+        else
+        {
+            if($this->requete->existeParametre("Envoyer"))
             {
-                $resul = $this->effectif->ajouterJoueur(array($nom,$prenom,$licence));
-                if($resul)
-                {
-                    echo "<script type='text/javascript' >alert('Insertion reussie');
-                    </script>";
-                }
+                $equipe =$this->requete->getParametre("Equipe");
+                $competitions = $this->competition->getCompetEq($equipe);
+                $this->genererVue(array("compet"=>$competitions));
             }
             else
             {
-                $resul = $this->effectif->modifier(array($nom,$prenom,$licence,$id));
-                if($resul)
-                {
-                    echo "<script type='text/javascript' > alert('Mise à jour reussie');</script>";
-                }
+                $this->genererVue(array());
             }
         }
-        $this->setAction("modifier");
-        $this->modifier();
     }
-    public function import()
+    public function gestion()
     {
-        if($this->requete->existeParametre("fichier"))
+        if($this->requete->getSession()->getAttribut("type")!="Entraineur")
         {
-            $error="Importation reussie(s)";
-            $nomfichier = $this->requete->getParametre("fichier");
-            $this->setAction("maj");
-            $f = fopen($nomfichier["tmp_name"],"r");
-            flock($f,LOCK_EX);
-            $count=0;
-            $nbr=0;
-            $reponses=array();
-            while(($arr=fgetcsv($f,","))!==FALSE)
+            echo '<script type="text/javascript" > alert("Action non autorisé! Connectez vous en tant que Entraineur.");
+            </script>';
+            $this->setAction("index");
+            $this->index();
+        }
+        else
+        {
+            if($this->requete->existeParametre("valider"))
             {
-                if(count($arr)!=3)
-                {
-                    $error = "Les informations ne sont pas corrects pour la table effectif";
-                    break; 
-                }
-                $count+=1 ;
-                $repon=false;
-                if($count==1){continue ;}
+                $idcompe = $this->requete->getParametre("competit");
+                $compe = $this->competition->getCompet($idcompe);
+                $tableau = $compe->fetch(PDO::FETCH_ASSOC);
+                $datecom = $tableau["datecompet"];
+                $libres = $this->effectif->getLibre($datecom);
+            
+            }      
+            $this->genererVue(array("competition"=>$tableau,"dispo"=>$libres));
+        }
+    }
+    public function ajout()
+    {
+        if($this->requete->getSession()->getAttribut("type")!="Entraineur")
+        {
+            echo '<script type="text/javascript" > alert("Action non autorisé! Connectez vous en tant que Entraineur.");
+            </script>';
+            $this->setAction("index");
+            $this->index();
+        }
+        else
+        {
+            if($this->requete->existeParametre("Valider"))
+            {
+                $lesids = $this->requete->getParametre("choix");
+                $idcomp = $this->requete->getParametre("idcomp");
+                $equi = $this->requete->getParametre("nomEquipe");
+                $adv = $this->requete->getParametre("adv");
+                $dateJ = $this->requete->getParametre("ladate");
+                $nb = count($lesids);
                 try{
-                $repon = $this->effectif->ajouterJoueur(array($arr[2],$arr[1],$arr[0]));
+                $req = $this->convocation->CreationConvo($dateJ,$equi,$adv,$nb,$idcomp);
                 }
                 catch(Exception $e)
                 {
                     echo "<script type='text/javascript' >";
                     echo 'alert("';
                     echo $e->getMessage();
-                    echo '");</script>';
+                    echo '");</script>';    
                 }
-                if($repon==true)
-                {
-                    $nbr+=1;
-                    $nbre= $count-1;
-                    $reponses[]="$nbre importation reussie";
-                    
+                if($req)
+                {  
+                    $resu = $this->convocation->getConvos($dateJ,$equi,$idcomp);
+                    if($resu->rowCount()==1)
+                    {
+                        $af = $resu->fetch(PDO::FETCH_ASSOC);
+                        $Icon = $af["id_convocation"];
+                        foreach($lesids as $val)
+                        {
+                            $this->occupation->insererOccu($val,$dateJ,$Icon);
+                        }
+                    }
                 }
+                if($req)
+                    echo '<script>alert("Convocation créée avec succes");</script>';
+                $this->setAction("index");
+                $this->index();
+            }
+        }
+    }
+    public function publier()
+    {
+        if($this->requete->getSession()->getAttribut("type")!="Entraineur")
+        {
+            echo '<script type="text/javascript" >alert(" Action non autorisé! Connectez vous en tant que Entraineur.");
+            </script>';
+            $this->setAction("index");
+            $this->index();
+        }
+        else
+        {
+            $lesconvos = $this->convocation->getConvoN();
+            $tableau = $lesconvos->fetchAll(PDO::FETCH_ASSOC);
+            foreach($tableau as $key=>$val)
+            {   
+                $rep = $this->competition->getCompet($tableau[$key]["id_compet"]);
+                $info = $rep->fetch(PDO::FETCH_ASSOC);
+                $tableau[$key]["nom"]="$info[nom_compet]";
+                if($tableau[$key]["nbre_convok"]<11)
+                    $tableau[$key]["publiable"]="Non";
                 else
+                    $tableau[$key]["publiable"]="Oui";
+            }
+            $this->genererVue($tableau);
+        }
+    }
+    public function publication()
+    {
+        if($this->requete->getSession()->getAttribut("type")!="Entraineur")
+        {
+            echo '<script type="text/javascript" >alert("Action non autorisé! Connectez vous en tant que Entraineur.");
+            </script>';
+            $this->setAction("index");
+            $this->index();
+        }
+        else
+        {
+            if($this->requete->existeParametre("valider"))
+            {
+                $idconvo = $this->requete->getParametre("valider");
+                $re = $this->convocation->publier("oui",$idconvo);
+                if($re)
                 {
-                    $nbre= $count-1;
-                    $reponses[]="$nbre ligne : Echec, Verifier le contenu du fichier importé";
+                    echo '<script>alert("';
+                    echo "publication effectué avec succès!";
+                    '");</script>';
                 }
             }
-            flock($f,LOCK_UN);
-            fclose($f);
-            $this->setAction("maj");
-            $this->genererVue(array("nbr"=>$nbr,"histo"=>$reponses,"nbre"=>$count,"error"=>$error));
+            $this->setAction("index");
+            $this->index();
         }
     }
 }

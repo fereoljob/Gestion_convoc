@@ -3,13 +3,6 @@ require_once 'Framework/Modele.php';
 
 class effectif extends Modele
 {
-    //Renvoie la liste des joueurs associé a une convocation
-    public function getJoueur_convo($id_convo)
-    {
-        $sql = 'select nom,prenom from effectif where id_convocation=?';
-        $reponses = $this->executerRequete($sql,array($id_convo));
-        return $reponses;
-    }
     //Renvoie la liste des joueurs
     public function getJoueur($id_joueur=null)
     {
@@ -28,7 +21,7 @@ class effectif extends Modele
     //insertion joueur
     public function ajouterJoueur($param)
     {
-        $sql = 'insert into effectif values(null,?,?,?,null,null)';
+        $sql = 'insert into effectif values(null,?,?,?)';
         $reponses = $this->executerRequete($sql,$param);
         return $reponses;
     }
@@ -50,6 +43,13 @@ class effectif extends Modele
         $sql = "select id_joueur from effectif where nom=? and prenom =?";
         $reponses = $this->executerRequete($sql,$param);
         return $reponses;
+    }
+    public function getLibre($date)
+    {
+            $sql = "select * from effectif f where licence=? and  not exists (select * from etat e where e.id_joueur=f.id_joueur and dateAb=?) and not exists (select * from 
+            occupation o where o.id_joueur=f.id_joueur and dateOccu=?)";
+            $reponses = $this->executerRequete($sql,array("Libre",$date,$date));
+            return $reponses;
     }
     
 }
