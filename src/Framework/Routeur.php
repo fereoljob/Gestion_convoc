@@ -1,6 +1,8 @@
 <?php
-require_once 'Requete.php';
-require_once 'Vue.php';
+namespace Acme;
+require_once __DIR__ . '/../../vendor/autoload.php';
+use Acme\Requete;
+use Acme\Vue;
 
 class Routeur
 {

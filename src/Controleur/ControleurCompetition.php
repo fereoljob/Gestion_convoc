@@ -1,8 +1,8 @@
 <?php
-
-require_once 'ControleurSecurise.php';
-require_once 'Modele/competition.php';
-
+namespace Acme;
+require_once __DIR__ . '/../../vendor/autoload.php';
+use Acme\ControleurSecurise;
+use Acme\Modele\competition;
 class ControleurCompetition extends ControleurSecurise
 {
 

@@ -1,5 +1,7 @@
 <?php
-require_once 'Framework/Modele.php';
+namespace Acme;
+require_once __DIR__ . '/../vendor/autoload.php';
+use Acme\Framework\Modele;
 
 class competition extends Modele
 {

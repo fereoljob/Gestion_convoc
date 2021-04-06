@@ -1,5 +1,7 @@
 <?php
-require_once 'Session.php';
+namespace Acme;
+require_once __DIR__ . '/../../vendor/autoload.php';
+use Acme\Session;
 class Requete
 {
     //parametre de la requete

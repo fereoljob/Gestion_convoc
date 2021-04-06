@@ -1,5 +1,7 @@
 <?php
-require_once "Configuration.php";
+namespace Acme;
+require_once __DIR__ . '/../../vendor/autoload.php';
+use Acme\Configuration;
 /**
  * Classe abstraite Modele.
  * centralise les services d'acces a une base de donnees.

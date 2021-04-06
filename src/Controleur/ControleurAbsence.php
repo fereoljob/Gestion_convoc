@@ -1,8 +1,9 @@
 <?php
-
-require_once 'ControleurSecurise.php';
-require_once 'Modele/etat.php';
-require_once 'Modele/effectif.php';
+namespace Acme;
+require_once __DIR__ . '/../../vendor/autoload.php';
+use Acme\ControleurSecurise;
+use Acme\Modele\etat;
+use Acme\Modele\effectif;
 class ControleurAbsence extends ControleurSecurise
 {
 

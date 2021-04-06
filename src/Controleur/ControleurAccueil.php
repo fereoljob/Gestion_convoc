@@ -1,6 +1,8 @@
 <?php
-require_once 'Framework/Vue.php';
-require_once 'Framework/Controleur.php';
+namespace Acme;
+require_once __DIR__ . '/../../vendor/autoload.php';
+use Acme\Framework\Vue;
+use Acme\Framework\Controleur;
 
 class ControleurAccueil extends Controleur{
 

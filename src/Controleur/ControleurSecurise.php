@@ -1,5 +1,7 @@
 <?php
-
+namespace Acme;
+require_once __DIR__ . '/../../vendor/autoload.php';
+use Acme\Framework\Controleur;
 require_once 'Framework/Controleur.php';
 
 /**

@@ -1,5 +1,5 @@
 <?php
-
+namespace Acme;
 class Configuration{
 
     private static $parametres;

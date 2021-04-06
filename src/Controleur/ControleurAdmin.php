@@ -1,8 +1,10 @@
 <?php
-require_once 'ControleurSecurise.php';
-require_once 'Modele/convocation.php';
-require_once 'Modele/effectif.php';
-require_once 'Modele/etat.php';
+namespace Acme;
+require_once __DIR__ . '/../../vendor/autoload.php';
+use Acme\ControleurSecurise;
+use Acme\Modele\convocation;
+use Acme\Modele\effectif;
+use Acme\Modele\etat;
 
 /**
  * Controleur des actions d'administration

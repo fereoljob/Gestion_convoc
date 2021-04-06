@@ -1,10 +1,12 @@
 <?php
-require_once 'Modele/convocation.php';
-require_once 'Modele/effectif.php';
-require_once 'Modele/competition.php';
-require_once 'Framework/Vue.php';
-require_once 'Framework/Controleur.php';
-require_once 'Modele/occupation.php';
+namespace Acme;
+require_once __DIR__ . '/../../vendor/autoload.php';
+use Acme\Modele\convocation;
+use Acme\Modele\effectif;
+use Acme\Modele\competition;
+use Acme\Framework\Vue;
+use Acme\Framework\Controleur;
+use Acme\Modele\occupation;
 class ControleurConvocation extends Controleur{
     private $convocation;
     private $joueur;

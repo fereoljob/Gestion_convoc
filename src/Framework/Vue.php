@@ -1,5 +1,7 @@
 <?php
-require_once 'Configuration.php';
+namespace Acme;
+require_once __DIR__ . '/../../vendor/autoload.php';
+use Acme\Configuration;
 class Vue{
     private $fichier;
     private $titre;

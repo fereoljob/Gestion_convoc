@@ -1,7 +1,9 @@
 <?php
-require_once 'Framework/Vue.php';
-require_once 'Framework/Controleur.php';
-require_once 'Modele/Utilisateur.php';
+namespace Acme;
+require_once __DIR__ . '/../../vendor/autoload.php';
+use Acme\Framework\Vue;
+use Acme\Framwork\Controleur;
+use Acme\Modele\Utilisateur;
 
 class ControleurConnexion extends Controleur{
 

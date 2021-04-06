@@ -1,5 +1,7 @@
 <?php
-require_once 'Framework/Modele.php';
+namespace Acme;
+use Acme\Framework\Modele;
+require_once __DIR__ . '/../../vendor/autoload.php';
 class convocation extends Modele
 {
     //insertion d'une convocation
