@@ -1,12 +1,10 @@
 <?php
-namespace Acme;
-require_once __DIR__ . '/../../vendor/autoload.php';
-use Acme\ControleurSecurise;
+use Acme\Controleur\ControleurSecurise;
 use Acme\Modele\effectif;
 use Acme\Modele\etat;
-use Acme\competition;
-use Acme\convocation;
-use Acme\occupation;
+use Acme\Modele\competition;
+use Acme\Modele\convocation;
+use Acme\Modele\occupation;
 class ControleurConvoc extends ControleurSecurise
 {
 

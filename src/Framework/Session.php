@@ -1,5 +1,5 @@
 <?php
-namespace Acme;
+namespace Acme\Framework;
 /**
  * classe modelisant la sesssion.
  * Encapsule la superglobale PHP $_SESSION.

@@ -1,7 +1,6 @@
 <?php
-namespace Acme;
-require_once __DIR__ . '/../../vendor/autoload.php';
-use Acme\Configuration;
+namespace Acme\Framework;
+use Acme\Framework\Configuration;
 class Vue{
     private $fichier;
     private $titre;
@@ -54,7 +53,7 @@ class Vue{
         }
         else
         {
-            throw new Exception("Fichier '$fichier' introuvable");
+            throw new \Exception("Fichier '$fichier' introuvable");
         }
     }
 }

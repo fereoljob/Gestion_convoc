@@ -1,8 +1,6 @@
 <?php
-namespace Acme;
-require_once __DIR__ . '/../../vendor/autoload.php';
 use Acme\Framework\Vue;
-use Acme\Framwork\Controleur;
+use Acme\Framework\Controleur;
 use Acme\Modele\Utilisateur;
 
 class ControleurConnexion extends Controleur{

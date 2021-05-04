@@ -1,8 +1,7 @@
 <?php
-namespace Acme;
-require_once __DIR__ . '/../../vendor/autoload.php';
-use Acme\Requete;
-use Acme\Vue;
+namespace Acme\Framework;
+use Acme\Framework\Requete;
+use Acme\Framework\Vue;
 abstract class Controleur
 {
     //action a realiser

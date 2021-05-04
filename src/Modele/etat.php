@@ -1,7 +1,6 @@
 <?php
 
-namespace Acme;
-require_once __DIR__ . '/../../vendor/autoload.php';
+namespace Acme\Modele;
 use Acme\Framework\Modele;
 
 class etat extends Modele

@@ -1,7 +1,5 @@
 <?php
-namespace Acme;
-require_once __DIR__ . '/../../vendor/autoload.php';
-use Acme\ControleurSecurise;
+use Acme\Controleur\ControleurSecurise;
 use Acme\Modele\effectif;
 use Acme\Modele\etat;
 class ControleurEffectif extends ControleurSecurise

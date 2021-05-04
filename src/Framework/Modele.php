@@ -1,7 +1,7 @@
 <?php
-namespace Acme;
-require_once __DIR__ . '/../../vendor/autoload.php';
-use Acme\Configuration;
+namespace Acme\Framework;
+use Acme\Framework\Configuration;
+use \PDO;
 /**
  * Classe abstraite Modele.
  * centralise les services d'acces a une base de donnees.
@@ -38,7 +38,7 @@ abstract class Modele
             $dsn = Configuration::get("dsn");
             $login = Configuration::get("login");
             $mdp = Configuration::get("mdp");
-            self::$bdd = new PDO($dsn,$login,$mdp);
+            self::$bdd = new \PDO($dsn,$login,$mdp);
             self::$bdd->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
         }
         return self::$bdd;
